@@ -1,0 +1,198 @@
+/* 
+Stylesheet for Clone2WatchIt Application
+   This CSS file defines the styles for the Clone2WatchIt application, ensuring a responsive layout across different screen sizes. It includes brand colors, typography, spacing, and layout adjustments for mobile, tablet, and desktop views. 
+*/
+
+/* --- BRAND COLOURS & STYLES --- */
+:root {
+  --brand-yellow: #EEF36A;
+  --brand-dark: #070410;
+  --brand-purple: #231651;
+  --brand-teal: #4DCCBD;
+  --text-white: #FFFFFF;
+  
+  --font-heading: 'Teko', sans-serif;
+  --font-body: 'Lato', sans-serif;
+  
+  --spacing-small: 16px;
+  --spacing-large: 16px;
+}
+
+@media (min-width: 720px) {
+  :root { --spacing-large: 32px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --spacing-large: 48px; }
+}
+
+body {
+  margin: 0;
+  background-color: var(--brand-dark);
+  color: var(--text-white);
+  font-family: var(--font-body);
+}
+
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-large);
+  box-sizing: border-box;
+}
+
+/* --- HEADER --- */
+.header {
+  background-color: var(--text-white);
+  color: var(--brand-dark);
+  padding: var(--spacing-small) var(--spacing-large);
+}
+
+.header-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 2em;
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .logo { font-size: 3em; }
+}
+
+.nav {
+  display: flex;
+  gap: var(--spacing-large);
+  align-items: center;
+}
+
+.nav-link {
+  display: none; /* Hides the text links on mobile following wireframe */
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+/* Brings the text links back on tablet and desktop following wireframes */
+@media (min-width: 720px) {
+  .nav-link {
+    display: inline-block;
+  }
+}
+
+/* --- BUTTONS --- */
+.btn {
+  font-family: var(--font-heading);
+  font-size: 2em;
+  background-color: var(--brand-yellow);
+  color: var(--brand-dark);
+  border: 2px solid var(--brand-dark);
+  border-radius: 6px;
+  padding: 4px var(--spacing-small);
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.card-btn {
+  width: 100%;
+  margin-top: var(--spacing-small);
+}
+
+/* --- MOVIE GRID BASE (MOBILE) --- */
+.movie-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-large);
+}
+
+.movie-card {
+  background-color: var(--brand-purple);
+  border-radius: 8px;
+  padding: var(--spacing-small);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--brand-teal);
+}
+
+.movie-poster {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-small);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.movie-title {
+  font-family: var(--font-heading);
+  font-size: 1.5em;
+  margin: 0 0 8px 0;
+}
+
+.movie-desc {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --- TABLET LAYOUT --- */
+/* 2-column grid for all cards */
+@media (min-width: 720px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- DESKTOP LAYOUT --- */
+/* Custom spans to match the wireframe layout */
+@media (min-width: 1024px) {
+  
+  /* Top Card spans full width */
+  .card-0 {
+    grid-column: span 2;
+  }
+  .card-0 .card-content {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: var(--spacing-large);
+  }
+  .card-0 .text-container {
+    flex: 1; /* Takes up remaining space */
+  }
+  .card-0 .card-btn {
+    width: auto;
+    margin-top: 0;
+    padding: 4px 32px;
+  }
+
+  /* Cards 4, 5, 6 span full width */
+  .card-3, .card-4, .card-5 {
+    grid-column: span 2;
+    flex-direction: row;
+    gap: var(--spacing-large);
+  }
+  .card-3 .movie-poster, .card-4 .movie-poster, .card-5 .movie-poster {
+    width: 40%;
+    margin-bottom: 0;
+    aspect-ratio: 1 / 1; 
+  }
+  .card-3 .card-content, .card-4 .card-content, .card-5 .card-content {
+    width: 60%;
+    justify-content: space-between;
+  }
+  .card-3 .card-btn, .card-4 .card-btn, .card-5 .card-btn {
+    width: fit-content;
+    align-self: flex-end; 
+  }
+}
