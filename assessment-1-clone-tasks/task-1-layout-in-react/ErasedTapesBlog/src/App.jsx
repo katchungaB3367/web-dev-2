@@ -1,0 +1,12 @@
+import React from 'react';
+import Task1 from './Task1';
+
+function App() {
+  return (
+    <div className="app">
+      <Task1 />
+    </div>
+  );
+}
+
+export default App;
